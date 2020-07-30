@@ -31,6 +31,15 @@ TLSimpleNodeTest >> testAdjacentNodes [
 ]
 
 { #category : #tests }
+TLSimpleNodeTest >> testAllNodesRecursively [
+	| aCollection |
+	aCollection := node allNodesRecursively.
+	self assert: aCollection class equals: Array.
+	self assert: aCollection size equals: 1.
+	self assert: (aCollection at: 1) class equals: TLSimpleNode.
+]
+
+{ #category : #tests }
 TLSimpleNodeTest >> testBecomeComposite [
 	self deny: node isComposite.
 	node becomeComposite.
@@ -48,6 +57,43 @@ TLSimpleNodeTest >> testConnectionCreation [
 	self assert: node outgoingConnections size equals: 1.
 	self assert: anotherNode incomingConnections size equals: 1.
 	self assert: node outgoingConnections first equals: anotherNode incomingConnections first
+]
+
+{ #category : #tests }
+TLSimpleNodeTest >> testInitialize [
+	self assert: node class equals: TLSimpleNode.
+	self assert: node label isNil.
+	self assert: node isSimpleNode.
+	self assert: node allConnections class equals: TLDrawableCollection.
+	self assertEmpty: node allConnections.
+	self assert: node hasEntity.
+	self assert: node isNode.
+	self
+		assert: node incomingConnections class
+		equals: TLDrawableCollection.
+	self assertEmpty: node incomingConnections.
+	self assert: node adjacentNodes class equals: TLDrawableCollection.
+	self assertEmpty: node adjacentNodes.
+	self
+		assert: node outgoingConnections class
+		equals: TLDrawableCollection.
+	self assertEmpty: node outgoingConnections.
+	self
+		assert: node outgoingAdjacentNodes class
+		equals: TLDrawableCollection.
+	self assertEmpty: node outgoingAdjacentNodes.
+	self assert: node isLeaf.
+	self deny: node isComposite.
+	self assert: node connections class equals: TLDrawableCollection.
+	self assertEmpty: node connections.
+	self
+		assert: node incomingAdjacentNodes class
+		equals: TLDrawableCollection.
+	self assertEmpty: node incomingAdjacentNodes.
+	self assert: node entity isNil.
+	self assert: node leafs class equals: Array.
+	self assert: node leafs size equals: 1.
+	self assert: (node leafs at: 1) class equals: TLSimpleNode
 ]
 
 { #category : #tests }
