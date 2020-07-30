@@ -23,51 +23,10 @@ TLCompositeNodeTest >> testAllChildrenCompositeNodes [
 	self assert: aCollection class equals: Array.
 	self assert: aCollection size equals: 1.
 	self assert: (aCollection at: 1) class equals: TLCompositeNode.
-	self deny: (aCollection at: 1) hasChildren.
-	self
-		assert: (aCollection at: 1) childrenGroup class
-		equals: TLEntitiesGroup.
-	self
-		assert: (aCollection at: 1) allConnections class
-		equals: TLDrawableCollection.
-	self assertEmpty: (aCollection at: 1) allConnections.
 	self assert: (aCollection at: 1) hasEntity.
-	self assert: (aCollection at: 1) isNode.
-	self
-		assert: (aCollection at: 1) childrenNodes class
-		equals: TLDrawableCollection.
 	self assertEmpty: (aCollection at: 1) childrenNodes.
-	self
-		assert: (aCollection at: 1) adjacentNodes class
-		equals: TLDrawableCollection.
-	self assertEmpty: (aCollection at: 1) adjacentNodes.
-	self
-		assert: (aCollection at: 1) incomingConnections class
-		equals: TLDrawableCollection.
-	self assertEmpty: (aCollection at: 1) incomingConnections.
 	self assert: (aCollection at: 1) label isNil.
-	self
-		assert: (aCollection at: 1) lowestLevelNodes class
-		equals: TLDrawableCollection.
-	self assertEmpty: (aCollection at: 1) lowestLevelNodes.
-	self
-		assert: (aCollection at: 1) outgoingAdjacentNodes class
-		equals: TLDrawableCollection.
-	self assertEmpty: (aCollection at: 1) outgoingAdjacentNodes.
-	self
-		assert: (aCollection at: 1) outgoingConnections class
-		equals: TLDrawableCollection.
-	self assertEmpty: (aCollection at: 1) outgoingConnections.
 	self assert: (aCollection at: 1) isComposite.
-	self assert: (aCollection at: 1) childrenProperty isNil.
-	self
-		assert: (aCollection at: 1) connections class
-		equals: TLDrawableCollection.
-	self assertEmpty: (aCollection at: 1) connections.
-	self
-		assert: (aCollection at: 1) incomingAdjacentNodes class
-		equals: TLDrawableCollection.
-	self assertEmpty: (aCollection at: 1) incomingAdjacentNodes.
 	self assert: (aCollection at: 1) entity equals: 42.
 	self assert: (aCollection at: 1) isCompositeNode
 ]
@@ -82,50 +41,10 @@ TLCompositeNodeTest >> testAllNodesRecursively [
 	self assert: aCollection size equals: 1.
 	self assert: (aCollection at: 1) class equals: TLCompositeNode.
 	self deny: (aCollection at: 1) hasChildren.
-	self
-		assert: (aCollection at: 1) childrenGroup class
-		equals: TLEntitiesGroup.
-	self
-		assert: (aCollection at: 1) allConnections class
-		equals: TLDrawableCollection.
-	self assertEmpty: (aCollection at: 1) allConnections.
 	self assert: (aCollection at: 1) hasEntity.
-	self assert: (aCollection at: 1) isNode.
-	self
-		assert: (aCollection at: 1) childrenNodes class
-		equals: TLDrawableCollection.
 	self assertEmpty: (aCollection at: 1) childrenNodes.
-	self
-		assert: (aCollection at: 1) adjacentNodes class
-		equals: TLDrawableCollection.
-	self assertEmpty: (aCollection at: 1) adjacentNodes.
-	self
-		assert: (aCollection at: 1) incomingConnections class
-		equals: TLDrawableCollection.
-	self assertEmpty: (aCollection at: 1) incomingConnections.
 	self assert: (aCollection at: 1) label isNil.
-	self
-		assert: (aCollection at: 1) lowestLevelNodes class
-		equals: TLDrawableCollection.
-	self assertEmpty: (aCollection at: 1) lowestLevelNodes.
-	self
-		assert: (aCollection at: 1) outgoingAdjacentNodes class
-		equals: TLDrawableCollection.
-	self assertEmpty: (aCollection at: 1) outgoingAdjacentNodes.
-	self
-		assert: (aCollection at: 1) outgoingConnections class
-		equals: TLDrawableCollection.
-	self assertEmpty: (aCollection at: 1) outgoingConnections.
 	self assert: (aCollection at: 1) isComposite.
-	self assert: (aCollection at: 1) childrenProperty isNil.
-	self
-		assert: (aCollection at: 1) connections class
-		equals: TLDrawableCollection.
-	self assertEmpty: (aCollection at: 1) connections.
-	self
-		assert: (aCollection at: 1) incomingAdjacentNodes class
-		equals: TLDrawableCollection.
-	self assertEmpty: (aCollection at: 1) incomingAdjacentNodes.
 	self assert: (aCollection at: 1) entity equals: 30.
 	self assert: (aCollection at: 1) isCompositeNode
 ]
