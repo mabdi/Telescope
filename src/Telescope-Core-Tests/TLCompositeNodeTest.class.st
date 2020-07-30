@@ -16,6 +16,40 @@ TLCompositeNodeTest >> setUp [
 ]
 
 { #category : #tests }
+TLCompositeNodeTest >> testAllChildrenCompositeNodes [
+	| aCollection |
+	node entity: 42.
+	aCollection := node allChildrenCompositeNodes.
+	self assert: aCollection class equals: Array.
+	self assert: aCollection size equals: 1.
+	self assert: (aCollection at: 1) class equals: TLCompositeNode.
+	self assert: (aCollection at: 1) hasEntity.
+	self assertEmpty: (aCollection at: 1) childrenNodes.
+	self assert: (aCollection at: 1) label isNil.
+	self assert: (aCollection at: 1) isComposite.
+	self assert: (aCollection at: 1) entity equals: 42.
+	self assert: (aCollection at: 1) isCompositeNode
+]
+
+{ #category : #tests }
+TLCompositeNodeTest >> testAllNodesRecursively [
+	| aCollection |
+	aCollection := node
+		entity: 30;
+		allNodesRecursively.
+	self assert: aCollection class equals: TLDrawableCollection.
+	self assert: aCollection size equals: 1.
+	self assert: (aCollection at: 1) class equals: TLCompositeNode.
+	self deny: (aCollection at: 1) hasChildren.
+	self assert: (aCollection at: 1) hasEntity.
+	self assertEmpty: (aCollection at: 1) childrenNodes.
+	self assert: (aCollection at: 1) label isNil.
+	self assert: (aCollection at: 1) isComposite.
+	self assert: (aCollection at: 1) entity equals: 30.
+	self assert: (aCollection at: 1) isCompositeNode
+]
+
+{ #category : #tests }
 TLCompositeNodeTest >> testChildrenCreationWithBlock [
 	node entity: 42.
 	node childrenProperty: [ :entity | 
@@ -47,6 +81,26 @@ TLCompositeNodeTest >> testChildrenCreationWithProperty [
 	self assert: node childrenNodes first entity equals: 2.
 	self assert: node childrenNodes second entity equals: 3.
 	self assert: node childrenNodes third entity equals: 5
+]
+
+{ #category : #tests }
+TLCompositeNodeTest >> testChildrenProperty [
+	node childrenProperty: #(1 2 3).
+	self
+		assert: node hasChildren;
+		assert: node allConnections class equals: TLDrawableCollection;
+		assert: node isComposite;
+		assert: node isCompositeNode
+]
+
+{ #category : #tests }
+TLCompositeNodeTest >> testError [
+	self should: [ node expanded ] raise: KeyNotFound. "KeyNotFound: key #compositeExpandedByDefault not found in Dictionary"
+	self should: [ node isExpanded ] raise: KeyNotFound. "KeyNotFound: key #compositeExpandedByDefault not found in Dictionary"
+	self should: [ node hasChildrenToDisplay] raise: KeyNotFound. "KeyNotFound: key #compositeExpandedByDefault not found in Dictionary".
+	self should: [ node isLeaf ] raise: KeyNotFound "KeyNotFound: key #compositeExpandedByDefault not found in Dictionary".
+	self should: [ node leafs ] raise: KeyNotFound "KeyNotFound: key #compositeExpandedByDefault not found in Dictionary".
+	self should: [ node childrenLayout ] raise: KeyNotFound "KeyNotFound: key #layout not found in Dictionary"
 ]
 
 { #category : #tests }

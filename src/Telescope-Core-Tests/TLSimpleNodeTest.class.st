@@ -31,6 +31,15 @@ TLSimpleNodeTest >> testAdjacentNodes [
 ]
 
 { #category : #tests }
+TLSimpleNodeTest >> testAllNodesRecursively [
+	| aCollection |
+	aCollection := node allNodesRecursively.
+	self assert: aCollection class equals: Array.
+	self assert: aCollection size equals: 1.
+	self assert: (aCollection at: 1) class equals: TLSimpleNode
+]
+
+{ #category : #tests }
 TLSimpleNodeTest >> testBecomeComposite [
 	self deny: node isComposite.
 	node becomeComposite.

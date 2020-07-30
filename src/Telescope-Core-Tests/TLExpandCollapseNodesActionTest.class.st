@@ -16,6 +16,15 @@ TLExpandCollapseNodesActionTest >> setUp [
 ]
 
 { #category : #tests }
+TLExpandCollapseNodesActionTest >> testActionOnError [
+	| node action |
+	node := visu addNodeFromEntity: 4.
+	action := TLExpandCollapseNodesAction property: [ :n | 1 to: n ].
+	action actionOn: node.
+	self should: [ action actionOn: node ] raise: MessageNotUnderstood "#removeOutgoingConnection: was sent to nil"
+]
+
+{ #category : #tests }
 TLExpandCollapseNodesActionTest >> testDefaultCollapse [
 	| node action |
 	node := visu addNodeFromEntity: 4.
